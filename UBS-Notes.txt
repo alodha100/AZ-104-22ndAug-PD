@@ -1,0 +1,906 @@
+Virtual machine 
+---------------------
+1. What a VM is 
+2. How to create a vm 
+3. How to create a windows vm 
+4. How to create a linux vm 
+5. How to access a windows vm and a linux vm 
+6. How to use extensions with windows and linux 
+7. What are the Availability options 
+
+Availability options
+==========================
+1. Availability Zones =======>>>> 99.99
+
+2. Availability set =========>>>> 99.95 (one single machine with premium disk - 99.9) 
+
+a. Fault domain ==> RACKs 
+b. Update domain ==> logical 
+
+3. Scale set - VMSS 
+
+==========================
+Scalability 
+-----------------
+1. Vertical scaling 
+
+a. scale up 
+b. scale down 
+
+
+2. Horizontal scaling (VMSS) 
+
+scale out 
+scale in 
+
+
+>>> Big billion day sale 
+
+>>> The great Indian sale 
+
+===========================
+
+Managing identity in Azure using AAD 
+=====================================
+>> what is a directory service 
+>> Features of AAD 
+>> AAD vs ADDS 
+>> Users in AAD 
+>> Guest users 
+>> License ==> 1. Basic free 2. M365 license 3. P1 4. P2 
+---------------------
+Premium features 
+---------------------
+1. Identity protection 
+2. Identity governance 
+3. PIM - Privilaged identity management 
+4. Access review 
+5. Conditional access policy 
+6. Dynamic quries 
+
+
+>> Groups in AAD 
+
+a. Security group 
+b. M365 group = only for email DL 
+
+>> SSPR 
+>> Domain join 
+
+there are 3 types devices 
+-----------------------------
+a. Domain join = Org provided device 
+b. Domin registered ==> your own device to access corporate network 
+c. hybrid device = connected to azure and on-prem both 
+
+
+
+AAD 
+=======
+1. It is a SAAS model 
+2. You don't manage the platform or any servers. You don't manage the DC - domain controller 
+3. It uses http\https REST methods 
+4. It uses SAML, Oauth, OpenIdconnect and WS-Fed 
+5. It is multi-tenants 
+6. It does not have forest, trees and parent child relationship of ADDS 
+7. It does not support LDAP, Kerberos, GPO - group policy object 
+8. It is highly available, secure, scalable 
+9. It also supports B2B and B2C out of box 
+
+
+AD or ADDS 
+==============
+1. You manage your own platform, servers, domian controllers 
+2. It uses LDAP
+3. Auth is by kerberos and NTLM 
+4. Supports GPO 
+5. Supports forest, trees, parent child domains 
+6. Single tenant
+7. Does not support SAML, Oauth and OpenIdconnect not supported without ADFS 
+
+
+
+Roles 
+=============
+1. AAD roles 
+
+>>> Global admin 
+>>> Global admin reader 
+>>> User admin
+>>> Application admin 
+
+2. Resource Roles - Subscription roles 
+
+a. Owner 
+b. Contributor 
+c. Reader 
+
+-----------------------
+=======================
+1. Azure hierarchy 
+2. MG - managment groups 
+3. Subscrtiption 
+4. Tenants and directories, domain 
+5. RBAC 
+6. Policy 
+7. Initiative 
+8. ARM architecture 
+9. Resource group 
+10. Locks 
+11. Resource movement 
+12. Cost analysis 
+13. Budget 
+14. Cost saving - 1. reservation 2. BYOL 3. Regions 4. Credits 5. Spot instances 
+
+>> Resource tagging 
+
+15. Administrative tools 
+==================================
+
+1. Azure portal 
+2. ARM template 
+3. Azure cli 
+4. Azure powershell 
+5. Rest Client and SDKs 
+
+-----------------------------------
+
+Cloud shell
+
+Ubuntu VM with 5 GB disk space 
+
+--------------------
+1. Azure cli
+2. Powershell
+3. Docker 
+4. Ansible 
+5. Terraform and many other tools 
+
+Infrastructure as code = IAC - ARM template 
+
+
+Azure cli 
+====================
+
+#az 
+
+#az < service name > < command > 
+
+
+#az vm create/delete resize/stop/start 
+#az storage create/delete/ 
+
+Resource group 
+location 
+
+
+Vnets
+=========
+How to create a Vnet
+How to create a subnet 
+How to set the IPs 
+How to create a bastion 
+
+=========================================
+
+Examples
+    Create a storage account 'mystorageaccount' in resource group 'MyResourceGroup' in the West US
+    region with locally redundant storage.
+	
+	
+        az storage account create -n mystorageaccount -g MyResourceGroup -l westus --sku
+        Standard_LRS
+
+    Create a storage account 'mystorageaccount' in resource group 'MyResourceGroup' in the
+    eastus2euap region with account-scoped encryption key enabled for Table Service.
+        az storage account create -n mystorageaccount -g MyResourceGroup --kind StorageV2 -l
+        eastus2euap -t Account
+
+To search AI knowledge base for examples, use: az find "az storage account create"
+
+
+az storage account create -n ubsstorrajaj - g myRG -l eastus -- sku Standard_LRS 
+---------------------------------------------------------------------------------------------
+
+04 az storage --help
+205 az storage account --help
+206 az storage account create --help
+207 az storage account create -n ubsstorrajaj - g myRG -l eastus -- sku Standard_LRS
+208 az storage account create -n ubsstorrajaj -g myRG -l eastus -- sku Standard_LRS
+209 az storage account create -n ubsstorrajaj -g myRG -l eastus --sku Standard_LRS
+210 az login
+211 clear
+212 az
+213 az find resourcegroup
+214 az find group
+215 clear
+216 az
+217 clear
+218 az group --help
+219 az group create --help
+220 az group create -l eastus --name ubsRG
+221 az group list
+222 az group show
+223 az group show -g ubsRG
+224 az group list
+225 az group list --output table
+
+--------------------------------------------------------
+Powershell
+====================
+
+Commands 
+-----------------
+
+1. New - to create a new service 
+2. Set - to set properties 
+3. Get - to get info about the service 
+4. Remove 
+5. Install 
+
+---------------------
+New-AZVM
+Set-AzVM
+Get-AzVM
+
+
+
+RELATED LINKS
+    Online Version: https://docs.microsoft.com/powershell/module/az.compute/new-azvm
+    Get-AzVM
+    Remove-AzVM
+    Restart-AzVM
+    Start-AzVM
+    Stop-AzVM
+    Update-AzVM
+    Add-AzVMDataDisk
+    Add-AzVMNetworkInterface
+    New-AzVMConfig
+    Set-AzVMOperatingSystem
+    Set-AzVMSourceImage
+    Set-AzVMOSDisk
+
+================================
+Install-Module -Name AzureRM -AllowClobber
+
+=================================
+ARM template components ==> JSON - key/value 
+============================
+1. Schema 
+2. Version 
+3. Resources 
+4. Parameters 
+5. Variables 
+6. Output 
+7. Functions 
+8. Metadata 
+
+===============================
+
+Mandatory components
+========================
+1. Schema 
+2. Version 
+3. Resources 
+
+Deployment of the template 
+==============================
+1. portal 
+2. CLI 
+3. Powershell 
+4. Visual studio 
+5. Visual code 
+
+============================
+Private IP ranges 
+----------------------
+
+1. Class A - 10.0.0.0 - 10.255.255.254 (255) Default mask =  255.0.0.0 == CIDR /8
+
+2. Class B - 172.16.0.0 - 172.31.255.254 Default mask = 255.255.0.0 /16 
+
+3. Class C - 192.168.0.0- 192.168.255.254 Default mask = 255.255.255.0 /24 
+
+-----------------------------------------------
+Vnet = 10.0.0.0/16 
+
+subnet1 = 10.0.1.0/24 
+subnet2 = 10.0.2.0/24 
+subnet3 = 10.0.3.0/24 /25/26/27
+------------------------------------------
+Vnet = 172.16.0.0/16 
+
+subnet1 = 172.16.1.0/24 
+subnet2 = 172.16.2.0/24 
+
+==========================
+
+1. Create a hub Vnet = 10.0.0.0/16 
+
+2. Create a Spoke vnet = 172.16.0.0/16
+
+=============================================
+
+IP address ranges 
+========================
+Class A ==> 1.0.0.0 = 127.255.255.255.
+
+127.0.0.0 ==> reserved for loopback 
+
+Class B ===> 128.0.0.0 == 191.255.255.255
+
+Class C ===> 192.0.0.0 == 223.255.255.255 
+
+
+168.11.23.34 
+
+220.23.23.34 
+
+===============================
+Types of IP
+----------------
+Private IP 
+Public IP ==> in internet, in public IP. You have to purchase them. IANA or ISP 
+
+===============================
+
+Public and Private 
+====================
+1. Static IP = The ip will remain same 
+2. Dynamic IP = The ip may change 
+
+a. Basic 
+b. Standard 
+
+NIC - network interface card - ethernet card or LAN card 
+
+====================
+
+NSG rule 
+=============
+5 tuple rule 
+
+1. Source IP 
+2. Dest IP 
+3. Source port 
+4. Dest port 
+5. Protocol 
+
+>>> Basic fw 
+>>> uses 5 tuple 
+>>> has allow and deny rule 
+>>> Inbound and outbound both support 
+>>> stateful in nature 
+>>> works at layer 3 and 4 
+>>>> lower the number, higher the priority 
+>>> this is free of cost 
+>>> uses service tags
+=========================
+Azure firewall 
+------------------
+> It is a paid service (unlike NSG which is free) 
+> works at layer 7 
+> advance firewall
+> managed by Azure - PAAS firewall 
+> Infra and the platform is under azure's control 
+> highly available, FT and scalable 
+> support 3 rules 
+-------------------
+a. NAT rule = DNAT and SNAT 
+b. Network rule = exactly like NSG 
+c. Application rule 
+
+> Supports threat intelligence 
+> supports public ips (100) 
+> supports FQDN 
+> FQDN tagging = Azure and windows services 
+> it support hub&spoke architecture
+> Forced tunneling 
+
+
+Vnet peering 
+===================
+1. Regional peering 
+2. Global peering 
+
+
+UDR - User definded routing 
+=============
+
+Step 1 
+--------
+Create a separate firewall subnet inside the hubvnet == AzureFirewallSubnet 
+
+Step 2
+-------------
+Create a firewall inside the hubvnet from the firewall tab 
+
+=============================
+
+To set up UDR 
+---------------------
+
+1. Create a routing table 
+
+2. you create the static route 
+
+it requires 2 entries 
+
+i) Destination network IP ==> spokevnet2 
+ii) Next hop ===> Can be a firewall, VNG 
+
+3. Assign the static route to the source network (subnet) ===> Spokevnet1 
+
+
+=================================
+DNS = Resolves name to IP ( it can also resolves IP to name - PTR record) 
+
+Types of DNS 
+=========================
+Private DNS 
+Public DNS 
+
+
+
+DNS records 
+================
+
+1. A records ======> name to IPv4 
+2. AAAA records ===> IPv6 
+3. MX records = mail exchanger 
+4. PTR ==> pointer - IP to name 
+5. NS = Name server 
+6. SOA = Start of autherity 
+7. Alias 
+8. CNAME 
+
+
+Azure load balancers 
+=======================
+1. Azure load balancer ===> Standard and Basic 
+2. Application gateway ==> standard and WAF enabled 
+3. Traffic manager = global 
+4. Front door = global 
+
+
+Types of LB
+==============
+> Internal 
+> external - public 
+
+Componetns of a LB
+=========================
+1. FrontEnd 
+2. BackEnd 
+3. Health probe 
+4. Listener = used in AGW. Combination of port and protocol used by the AGW 
+5. Rules 
+6. NAT 
+7. HTTP settings 
+
+
+ALB Vs AGW 
+====================
+1. ALB works at layer 3 and 4, AGW works at layer 7 
+2. ALB works with TCP and udp, AGW works with https and https 
+4. AGW supports many advance features 
+5. It is a basic level LB 
+6. Recommended for Dev and Testing 
+7. Does not support https 
+8. It supports NAT 
+9. It supports foalting IPs 
+
+
+AGW supports all these 
+-----------------------------
+a. http2 protocol 
+b. Multisite hosting 
+c. WAF - web application firewall 
+d. Redirection 
+e. Certificates with https 
+f. SSL termination and SSL offloading 
+g. path based routing 
+h. It requires it's own subnet 
+i. It support on-prem servers as backend 
+j. It is scalable by it's own 
+
+
+Azure storage 
+===================
+> Everything starts with an account 
+
+> In azure there are 4 types of storage 
+--------------------------------------------
+1. Blob storage 
+2. File storage 
+3. Table storage 
+4. Queue storage 
+
+------------------
+5. Data lake - DP-203 
+
+
+Account Kinds 
+====================
+1. GPV2 = general purpose version 2 supports all the features of the storage account 
+2. GPV1 = Does not support all the features
+3. Blob storage = only for blob storge (other storage types will not be supported ) 
+4. File storage 
+5. Blockblob 
+
+
+Performance tiers 
+======================
+1. Standard ===> HDD 
+2. Premium  ===> SSD = solid state disk 
+
+
+Access tier 
+====================
+Frequency of data access 
+
+1. Hot = Frequently - everyday 
+2. Cool = once in 30 days 
+3. Archieve = accessing the data once in 6 months - 180 days 
+
+
+Replication 
+===================
+1. LRS 
+2. ZRS 
+3. GRS 
+4. RA-GRS
+5. GZRS 
+6. RA-GZRS 
+
+
+Blobs types 
+==================
+1. Block blob = audio and videos 
+2. Page blob 
+3. Append blob 
+
+
+Security of storage 
+===========================
+1. Access keys 
+2. SAS keys = Shared access signature 
+3. Encryption 
+4. Securre transfer 
+5. AAD authetication 
+6. Firewall - networking 
+7. Container and blob security 
+8. Dual layer encryption 
+9. Immutable storage 
+10. Delete protection 
+
+===========================
+Storage managment tools 
+==========================
+
+1. DataBox 
+2. Azcopy 
+3. Import/export 
+4. Storage explorer 
+
+======================
+PAAS 
+----------
+1. Azure app service = Webapps 
+2. Azure container instance = ACI 
+3. Azure Kubernetes service = AKS 
+
+
+
+Zero downtime blue green deployment 
+===================================
+using slots 
+
+
+Container services on Azure 
+==================================
+1. App service 
+2. ACI = Azure container Intance 
+3. ACR = Azure container registry 
+4. AKS = Azure Kubernetes services 
+5. Container inside a VM 
+
+=============================================
+
+482  docker rm webserver1
+  483  docker run --name webserver1 -d -p 7777:80 nginx
+  484  docker ps
+  485  clear
+  486  docker run --name webserver2 -d -p 8888:80 nginx
+  487  history
+  488  celar
+  489  clear
+  490  docker ps
+  491  docker inspect
+  492  docker inspect webserver1
+  493  cd /var/lib
+  494  clear
+  495  docker login acrdemoaj.azurecr.io
+  496  docker images
+  497  docker push mywalmartacr.azurecr.io/nginx
+  498  docker tag mywalmartacr.azurecr.io/nginx acrdemoaj.azurecr.io/nginx
+  499  docker images
+  500  docker push acrdemoaj.azurecr.io/nginx
+  501  docker
+  502  clear
+  503  docker images ls
+  504  docker container ls
+  505  docker ps
+  506  clear
+  507  docker pull nginx
+  508  docker container ls
+  509  clear
+  510  docker images ls
+  511  docker images
+
+  514  docker run --name webserver1 -p 8888:80 -d nginx
+  515  docker run --name nginx1 -p 8888:80 -d nginx
+  516  docker run --name nginx2 -p 8889:80 -d nginx
+  517  clear
+  518  history
+
+================================
+
+AKS 
+-----------
+Master 
+Nodes architecture 
+--------------------------
+Conatainers in kubernetes world are known as - PODs 
+> A pod is a single or multiple containers together 
+
+--------------------------
+AKS worksloads = Kinds 
+------------------
+1. PODs 
+2. Deployment 
+3. Service - load balancer 
+4. Ingress - AGW 
+5. Replicaset 
+6. Daemonset 
+7. Cron 
+8. Jobs 
+9. Stateful set 
+
+=============================
+  247  az account set --subscription 223ecc07-76c9-4084-921a-b4d0dee47eb8
+  248  az aks get-credentials --resource-group ourRG --name kubeclus
+  249  kubectl get pods
+  250  kubectl get nodes
+  251  kubectl get deployment
+  252  clear
+  253  vi vote.yaml
+  254  kubectl apply -f vote.yaml 
+  255  kubectl get deployment
+  256  kubectl get pods
+  257  kubectl get svc
+
+================================
+Backup = Azure backup 
+---------------------
+1. Azure to azure 
+2. On-prem to azure 
+
+4 items can be backed up 
+----------------------------
+1. VM
+2. SQL server running in VM 
+3. Storage file share 
+4. SAP running inside VM 
+
+
+Replication = ASR - Azure site recovery ( disaster recovery ) 
+
+-----------------------------
+A vault is required for backup and replication 
+
+> For backup the vault should be in the same region 
+> For replication the vault should be in another region 
+
+
+--------------------------------
+> for file n folder backup ===> MARS agent is required 
+
+>> To backup the entire machine (vm or physical) ===> MABS = Microsoft Azure backup server 
+
+Restoration
+--------------
+1. Same vm
+2. new vm 
+3. only a file or folder 
+4. Only disk restore 
+
+Azure monitor 
+====================
+1. Azure  monitor 
+2. Alerts 
+3. Log analytics 
+4. Network watcher 
+
+
+Azure monitor 
+--------------------
+> Can be used to monitor each and every azure service 
+
+>>> including IAAS ====> you need an agent - MMA - Microsoft monitoring agent 
+>>> and PAAS also  ====> for PAAS platform the agent is already installed. You don't need to install it 
+
+> Can be used to monitor on-prem workload =====>>> MMA is required 
+
+> Can be used to monitor other cloud workloads ===>>> MMA is required
+
+
+4 Primary components 
+===========================
+1. Metrics 
+2. Logs 
+3. Alerts 
+4. Insights 
+
+
+Network watcher 
+=======================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
